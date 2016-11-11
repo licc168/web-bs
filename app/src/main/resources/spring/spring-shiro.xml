@@ -1,5 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的ShiroDbRealm.java -->
-<bean id="myRealm" class="com.jadyer.realm.MyRealm"/>
+<bean id="myRealm" class="com.licc.shiro.MyRealm"/>
 
         <!-- Shiro默认会使用Servlet容器的Session,可通过sessionMode属性来指定使用Shiro原生Session -->
         <!-- 即<property name="sessionMode" value="native"/>,详细说明见官方文档 -->
@@ -29,9 +40,9 @@
     <value>
         /mydemo/login=anon
         /mydemo/getVerifyCodeImage=anon
-        /main**=authc
-        /user/info**=authc
-        /admin/listUser**=authc,perms[admin:manage]
+        *=authc
+
+        <!--/admin/listUser**=authc,perms[admin:manage]-->
     </value>
 </property>
 </bean>
@@ -49,3 +60,4 @@
             <property name="securityManager" ref="securityManager"/>
           </bean>
         -->
+</beans>

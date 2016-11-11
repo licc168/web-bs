@@ -11,6 +11,8 @@
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <import resource="classpath:spring-service.xml"/>
     <import resource="classpath:spring-quartz.xml"/>
+
+
     <!--1:开始springMVC注解模式-->
     <!--简化配置:
     	1、自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter

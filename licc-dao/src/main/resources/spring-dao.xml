@@ -12,6 +12,7 @@
 
     <!--1、配置数据库相关参数-->
     <context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
+    <context:component-scan base-package="com.licc.dao"/>
 
     <!--2.数据源druid -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" 
@@ -48,7 +49,7 @@
         <!--注入SqlSessionFactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描的Dao接口-->
-        <property name="basePackage" value="com.yingjun.ssm.dao"/>
+        <property name="basePackage" value="com.licc.dao"/>
     </bean>
 
 </beans>

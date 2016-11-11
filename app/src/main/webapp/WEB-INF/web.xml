@@ -62,7 +62,15 @@
     <filter-name>shiroFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <filter>
+    <filter-name>accessFilter</filter-name>
+    <filter-class>com.licc.filter.AccessFilter</filter-class>
 
+  </filter>
+  <filter-mapping>
+    <filter-name>accessFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
 
 </web-app>

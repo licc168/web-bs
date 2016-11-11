@@ -55,15 +55,31 @@
             <property name="enableSubPackages" value="ture"/>
         </sqlMapGenerator>
 
-        <!-- 生成的Dao接口 的包路径 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="${dao.package}" targetProject="${target.project}">
-            <property name="enableSubPackages" value="true"/>
+        <!-- 生成的Dao接口 的包路径
 
-        </javaClientGenerator>
+        -->
+        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="${dao.package}" targetProject="${target.project}">-->
+            <!--<property name="enableSubPackages" value="true"/>-->
+
+        <!--</javaClientGenerator>-->
 
         <!--对应数据库表名 -->
-        <table tableName="talent_user"  >
+        <table tableName="u_user"  domainObjectName="User" >
 
         </table>
     </context>
 </generatorConfiguration>
+
+<!--
+mybatis-generator:generate
+这个目标不会被Maven自动执行，他可以通过以下两种方式执行。
+
+可以在命令行通过以下命令执行:
+
+mvn mybatis-generator:generate
+您可以通过标准的Maven命令属性传递参数， 例如:
+
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+
+
+-->

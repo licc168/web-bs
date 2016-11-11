@@ -3,11 +3,9 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package utils;
+package com.licc.common.util;
 
 
-
-import com.licc.common.util.Exceptions;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;

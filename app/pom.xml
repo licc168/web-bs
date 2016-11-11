@@ -11,6 +11,12 @@
     <packaging>war</packaging>
     <name>app Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+
+    <properties>
+        <!-- 主要依赖库的版本定义 -->
+        <shiro.version>1.3.0</shiro.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -24,6 +30,28 @@
             <artifactId>licc-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- SECURITY begin -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <!-- SECURITY end -->
     </dependencies>
     <build>
         <finalName>app</finalName>

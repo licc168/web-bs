@@ -1,4 +1,4 @@
-package com.licc.realm;
+package com.licc.shiro;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -112,5 +112,5 @@ public class MyRealm extends AuthorizingRealm {
                 session.setAttribute(key, value);  
             }  
         }  
-    }  
+    }
 }
