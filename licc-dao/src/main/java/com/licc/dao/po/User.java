@@ -32,7 +32,7 @@ public class User implements IEntity {
      */
     private Date createTime;
 
-    /**
+    /**N
      *  最后登录时间
      */
     private Date lastLoginTime;

@@ -29,7 +29,7 @@
     <!--3:配置JSP　显示ViewResolver-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/WEB-INF/tpl/"/>
         <property name="suffix" value=".vm"/>
     </bean>
 
@@ -39,4 +39,10 @@
     <!-- 全局异常捕捉 -->
     <bean class="com.licc.common.exception.handler.GlobalExceptionHandler"/>
     <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig"/>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="i18n.messages" />
+        <property name="useCodeAsDefaultMessage" value="true" />
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
 </beans>

@@ -1,7 +1,6 @@
 package com.licc.service.base;
 
 
-
 import com.licc.common.assembler.AbstractAssembler;
 import com.licc.common.util.GenericsUtils;
 import com.licc.common.util.PageInfo;
@@ -17,24 +16,27 @@ import java.util.List;
 
 /**
  * 通用抽象实体Service
- * @author  lichangchao
  *
+ * @author lichangchao
  */
-public abstract class AbstractEntityService<V, E extends IEntity, PK extends Serializable> {
+public abstract class AbstractEntityService<V, E extends IEntity, PK extends Serializable>  {
 
     /**
      * 获取实体mapper对象
+     *
      * @return
      */
     protected abstract IEntityMapper<E, PK> getEntityMapper();
+
     private AbstractAssembler<V, E> entityAssembler = new AbstractAssembler<V, E>(
             GenericsUtils.getSuperClassGenricType(this.getClass(), 0),
-            GenericsUtils.getSuperClassGenricType(this.getClass(), 1)){};
-
+            GenericsUtils.getSuperClassGenricType(this.getClass(), 1)) {
+    };
 
 
     /**
      * 分页查询
+     *
      * @param queryParam 查询参数
      * @return
      */
@@ -61,7 +63,21 @@ public abstract class AbstractEntityService<V, E extends IEntity, PK extends Ser
     }
 
     /**
+     * 列表查询
+     *
+     * @param queryParam 查询参数
+     * @return
+     */
+    public List<V> list(QueryParameters queryParam) {
+        IEntityMapper<E, PK> entityMapper = getEntityMapper();
+        List<E> entities = entityMapper.page(queryParam);
+        Collection<V> dtos = entityAssembler.toDTOs(entities);
+        return (List<V>) dtos;
+    }
+
+    /**
      * 获取实体Dto
+     *
      * @param id 实体主键
      * @return
      */
@@ -77,6 +93,7 @@ public abstract class AbstractEntityService<V, E extends IEntity, PK extends Ser
 
     /**
      * 保存实体
+     *
      * @param dto 实体Dto
      */
     public void save(V dto) {
@@ -91,6 +108,7 @@ public abstract class AbstractEntityService<V, E extends IEntity, PK extends Ser
 
     /**
      * 删除实体
+     *
      * @param id 实体主键
      * @return
      */
@@ -98,7 +116,6 @@ public abstract class AbstractEntityService<V, E extends IEntity, PK extends Ser
         IEntityMapper<E, PK> entityMapper = getEntityMapper();
         return entityMapper.delete(id);
     }
-
 
 
 

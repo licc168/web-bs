@@ -1,6 +1,9 @@
 package com.licc.filter;
 
+import org.springframework.web.servlet.support.RequestContext;
+
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -9,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AccessFilter extends HttpServlet implements Filter {
@@ -27,15 +31,18 @@ public class AccessFilter extends HttpServlet implements Filter {
   
     //设置其他IP地址的机器可以直接访问到这个项目的后端  
     @Override  
-    public void doFilter(ServletRequest request, ServletResponse response,  
+    public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {  
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-        httpResponse.setHeader("Access-Control-Allow-Origin", "*");
-        httpResponse.setHeader("Access-Control-Allow-Methods","GET, POST, OPTIONS");
-        httpResponse.setHeader("Access-Control-Allow-Headers","DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type");
-        httpResponse.setHeader("Access-Control-Allow-Credentials", "true");  
-        chain.doFilter(request, httpResponse);  
-                  
+//        HttpServletResponse httpResponse = (HttpServletResponse) response;
+//        httpResponse.setHeader("Access-Control-Allow-Origin", "*");
+//        httpResponse.setHeader("Access-Control-Allow-Methods","GET, POST, OPTIONS");
+//        httpResponse.setHeader("Access-Control-Allow-Headers","DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type");
+//        httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
+        //国际化信息
+//        RequestContext requestContext =  new RequestContext((HttpServletRequest) request,(HttpServletResponse) response);
+//        requestContext.changeLocale(Locale.CHINA);
+        chain.doFilter(request, response);
+
     }  
   
 }  
