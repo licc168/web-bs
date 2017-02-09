@@ -1,23 +1,27 @@
-package com.licc.common.aop;
+package com.licc.aop;
 
 import com.licc.common.util.ResultJsonUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 
 /**
  * 参数验证处理类
  * @author lichangchao
  */
+@Aspect
 public class BindingResultAop {
 
 
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(* com.licc.web.*.*(..))")
+    @Pointcut("execution(* com.licc.web..*.*(..))")
     public void aopMethod() {
     }
 
@@ -33,7 +37,7 @@ public class BindingResultAop {
         }
         if (bindingResult != null) {
             if (bindingResult.hasErrors()) {
-                String errorInfo = "[" + bindingResult.getFieldError().getField() + "]" + bindingResult.getFieldError().getDefaultMessage();
+                String errorInfo = bindingResult.getFieldError().getDefaultMessage();
                 return  ResultJsonUtil.failResult(errorInfo);
             }
         }

@@ -24,26 +24,25 @@ public class JwtFilter extends GenericFilterBean {
         final HttpServletRequest request = (HttpServletRequest) req;
         final HttpServletResponse response = (HttpServletResponse) res;
         String url = ((HttpServletRequest) req).getRequestURI();
-        if (url.indexOf("login") < 0) {
-            final String authHeader = request.getHeader("authorization");
-            if ("OPTIONS".equals(request.getMethod())) {
-                response.setStatus(HttpServletResponse.SC_OK);
-                chain.doFilter(req, res);
-            } else {
-                if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                    throw new ServletException("Missing or invalid Authorization header");
-                }
-                final String token = authHeader.substring(7);
-                try {
-                    final Claims claims = Jwts.parser().setSigningKey(Const.SECRETKEY).parseClaimsJws(token).getBody();
-                    request.setAttribute("claims", claims);
-                } catch (final SignatureException e) {
-                    throw new ServletException("Invalid token");
-                }
-
+        final String authHeader = request.getHeader("authorization");
+        if ("OPTIONS".equals(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            chain.doFilter(req, res);
+        } else {
+            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                throw new ServletException("Missing or invalid Authorization header");
+            }
+            final String token = authHeader.substring(7);
+            try {
+                final Claims claims = Jwts.parser().setSigningKey(Const.SECRETKEY).parseClaimsJws(token).getBody();
+                request.setAttribute("claims", claims);
+            } catch (final SignatureException e) {
+                throw new ServletException("Invalid token");
             }
 
         }
+
+
         chain.doFilter(req, res);
     }
 }

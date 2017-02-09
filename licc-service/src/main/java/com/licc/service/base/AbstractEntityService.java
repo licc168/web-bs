@@ -2,12 +2,11 @@ package com.licc.service.base;
 
 
 import com.licc.common.assembler.AbstractAssembler;
-import com.licc.common.util.GenericsUtils;
-import com.licc.common.util.PageInfo;
-import com.licc.common.util.PageResult;
-import com.licc.common.util.QueryParameters;
+import com.licc.common.util.*;
 import com.licc.dao.base.IEntity;
 import com.licc.dao.base.IEntityMapper;
+import com.licc.vo.UserVO;
+import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -19,7 +18,7 @@ import java.util.List;
  *
  * @author lichangchao
  */
-public abstract class AbstractEntityService<V, E extends IEntity, PK extends Serializable>  {
+public abstract class AbstractEntityService<V, E extends IEntity, PK extends Serializable> {
 
     /**
      * 获取实体mapper对象
@@ -117,6 +116,13 @@ public abstract class AbstractEntityService<V, E extends IEntity, PK extends Ser
         return entityMapper.delete(id);
     }
 
-
+    /**
+     * 通过参数信息获取实体
+     */
+    public V getByParam(E param) {
+        List<V> list = this.list(QueryParametersUtil.addParam(param));
+        if (CollectionUtils.isEmpty(list)) return null;
+        return list.get(0);
+    }
 
 }

@@ -78,7 +78,7 @@
   </filter>
   <filter-mapping>
     <filter-name>jwtFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/api/jwt/*</url-pattern>
   </filter-mapping>
 
 </web-app>

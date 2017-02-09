@@ -1,6 +1,7 @@
 package com.licc.dao.po;
 
 import com.licc.dao.base.IEntity;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -10,11 +11,13 @@ public class User implements IEntity {
     /**
      *  
      */
+
     private Long id;
 
     /**
      *  用户昵称
      */
+  @NotNull(message = "{nickname.not.empty}")
     private String nickname;
 
     /**
