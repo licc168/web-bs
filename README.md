@@ -37,7 +37,7 @@ licc-dao：数据交互层
 
 licc -cache:缓存（redis、guava）
 
-** 后续：**
+**后续：**
 
 项目整体功能将移植到和朋友共同新建的基于spring boot框架的lccf项目中
 
